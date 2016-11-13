@@ -9,10 +9,9 @@ defmodule Tables do
 
     children = [
       worker(Tables.Client, []),
-      @doc """
       worker(Tables.Generator,  [
              Tables.Client,
-             [:public, :named_table, :set, read_concurrency: true] ])"""
+             [:public, :named_table, :set, read_concurrency: true] ])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
