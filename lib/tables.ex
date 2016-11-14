@@ -25,6 +25,11 @@ defmodule Tables do
     end
   end
 
+  def give_away(recipient) do
+    pid = wait_for(recipient)
+    #call ets.give_away
+  end
+
   def start_session do
     res = Supervisor.start_child(Tables.Supervisor, [%{}])
   end
