@@ -55,4 +55,16 @@ defmodule Tables do
     new_state = %{table: table}
     {:noreply, new_state}
   end
+
+  def wait_for(process) do
+    Logger.debug "waiting for #{inspect process}"
+    case Process.whereis(process) do
+      nil ->
+        Logger.debug "still waiting for #{inspect process}"
+        wait_for(process)
+      pid ->
+        Logger.debug "got process #{inspect pid}"
+        pid
+    end
+  end
 end
